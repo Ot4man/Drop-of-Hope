@@ -64,6 +64,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    
+    // REGISTRATION FORM VALIDATION 
+    const registerForm = document.getElementById('register-form');
+    if (registerForm) {
+        registerForm.addEventListener('submit', (e) => {
+            const pass = document.getElementById('password').value;
+            const confirm = document.getElementById('repeat-password').value;
+
+            if (pass !== confirm) {
+                e.preventDefault();
+                alert("Passwords do not match!");
+            }
+        });
+    }
 });
 
