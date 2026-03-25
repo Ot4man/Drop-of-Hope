@@ -38,7 +38,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    
+    // PASSWORD STRENGTH INDICATOR
+    const passwordInput = document.getElementById('password');
+    const strengthBar = document.getElementById('strength-bar');
+
+    if (passwordInput && strengthBar) {
+        passwordInput.addEventListener('input', () => {
+            const val = passwordInput.value;
+            let strength = 0;
+            if (val.length >= 8) strength++;
+            if (/[A-Z]/.test(val)) strength++;
+            if (/[0-9]/.test(val)) strength++;
+            if (/[^A-Za-z0-9]/.test(val)) strength++;
+
+            strengthBar.className = "password-strength-bar";
+            if (val.length === 0) {
+                strengthBar.style.width = "0%";
+            } else if (strength < 2) {
+                strengthBar.classList.add('strength-weak');
+            } else if (strength < 4) {
+                strengthBar.classList.add('strength-medium');
+            } else {
+                strengthBar.classList.add('strength-strong');
+            }
+        });
+    }
 
     
 });
