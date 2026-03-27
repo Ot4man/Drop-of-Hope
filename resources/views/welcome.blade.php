@@ -6,7 +6,7 @@
 <!-- Hero Section -->
 <section class="min-h-[80vh] px-[10%] py-16 md:py-24 flex flex-col md:flex-row items-center justify-between gap-16 overflow-hidden">
     <div class="max-w-2xl text-center md:text-left z-10">
-        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight text-text-dark mb-6">
+        <h1 class="text-5xl md:text-7xl font-serif font-bold leading-tight tracking-tight text-text-dark mb-6">
             Donate <span class="text-primary-red">Blood</span>,<br>Save Lives.
         </h1>
         <p class="text-lg md:text-xl text-text-muted mb-10 max-w-xl mx-auto md:mx-0">
@@ -37,24 +37,24 @@
 <!-- Impact Section -->
 <section id="why" class="bg-off-white py-24 px-[10%]">
     <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-5xl font-bold mb-4 text-text-dark">Why Your Donation Matters</h2>
+        <h2 class="text-3xl md:text-5xl font-serif mb-4 text-text-dark">Why Your Donation Matters</h2>
         <div class="w-24 h-1.5 bg-primary-red mx-auto rounded-full"></div>
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
         <div class="bg-white p-10 rounded-premium shadow-premium hover:scale-[1.03] transition-all border border-red-50">
             <div class="text-5xl mb-6">❤️</div>
-            <h3 class="text-2xl font-bold mb-3 text-text-dark">Blood Donation</h3>
+            <h3 class="text-2xl font-serif mb-3 text-text-dark">Blood Donation</h3>
             <p class="text-text-muted leading-relaxed">Your blood helps patients with major surgeries, cancer treatments, or severe trauma recovery.</p>
         </div>
         <div class="bg-white p-10 rounded-premium shadow-premium hover:scale-[1.03] transition-all border border-red-50">
             <div class="text-5xl mb-6">🩸</div>
-            <h3 class="text-2xl font-bold mb-3 text-text-dark">Plasma Donation</h3>
+            <h3 class="text-2xl font-serif mb-3 text-text-dark">Plasma Donation</h3>
             <p class="text-text-muted leading-relaxed">Plasma provides crucial proteins for patients with immune deficiencies and clotting disorders.</p>
         </div>
         <div class="bg-white p-10 rounded-premium shadow-premium hover:scale-[1.03] transition-all border border-red-50">
             <div class="text-5xl mb-6">🌟</div>
-            <h3 class="text-2xl font-bold mb-3 text-text-dark">Become a Hero</h3>
+            <h3 class="text-2xl font-serif mb-3 text-text-dark">Become a Hero</h3>
             <p class="text-text-muted leading-relaxed">Join a community of 5,000+ donors who are actively saving lives in your local hospitals.</p>
         </div>
     </div>
@@ -66,7 +66,7 @@
     <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-red-100 rounded-full mix-blend-multiply opacity-50 blur-3xl"></div>
     
     <div class="max-w-3xl mx-auto z-10 relative">
-        <h2 class="text-4xl font-bold mb-6 text-text-dark tracking-tight">Ready to save a life today?</h2>
+        <h2 class="text-4xl font-serif mb-6 text-text-dark tracking-tight">Ready to save a life today?</h2>
         <p class="text-lg text-text-muted mb-10 leading-relaxed">Each donation can save up to three lives. It’s simple, safe, and only takes about 45 minutes of your time.</p>
         <a href="{{ route('eligibility') }}" class="btn-primary-custom px-12 py-5 text-xl font-bold">Register as a Donor</a>
     </div>

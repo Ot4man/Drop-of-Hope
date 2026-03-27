@@ -6,7 +6,7 @@
 <section class="min-h-screen py-24 px-6 flex justify-center items-center bg-off-white">
     <div class="form-card-custom max-w-3xl">
         <div class="text-center mb-10">
-            <h2 class="text-4xl font-extrabold text-primary-red mb-3">Create an Account</h2>
+            <h2 class="text-4xl font-serif font-bold text-primary-red mb-3">Create an Account</h2>
             <p class="text-text-muted leading-relaxed">Become a part of our life-saving community today.</p>
         </div>
 

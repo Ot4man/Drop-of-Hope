@@ -7,7 +7,7 @@
     <div class="bg-white p-10 md:p-16 rounded- premium shadow-premium border border-red-50 max-w-5xl mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
             <div>
-                <h2 class="text-4xl font-extrabold text-text-dark tracking-tight leading-none mb-3">Welcome, <span class="text-primary-red">Hero!</span></h2>
+                <h2 class="text-4xl font-serif font-bold text-text-dark tracking-tight leading-none mb-3">Welcome, <span class="text-primary-red">Hero!</span></h2>
                 <p class="text-text-muted text-lg">Thank you for your life-saving commitment.</p>
             </div>
             <div class="bg-red-50 px-6 py-3 rounded-full flex items-center gap-3">
@@ -38,7 +38,7 @@
         
         <div class="flex flex-wrap gap-4 pt-10 border-t border-gray-50">
             <a href="#" class="btn-primary-custom px-8 py-4 text-base font-bold">Find Blood Bank</a>
-            <a href="#" class="px-8 py-4 border-2 border-primary-red text-primary-red rounded-premium font-bold hover:bg-red-50 transition-all">Update Profile</a>
+            <a href="{{ route('profile.edit') }}" class="px-8 py-4 border-2 border-primary-red text-primary-red rounded-premium font-bold hover:bg-red-50 transition-all">Update Profile</a>
             <form action="{{ route('logout') }}" method="POST" class="ml-auto">
                 @csrf
                 <button type="submit" class="px-8 py-4 bg-gray-100 text-gray-600 rounded-premium font-bold hover:bg-gray-200 transition-all">Logout</button>

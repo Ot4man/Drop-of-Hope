@@ -6,7 +6,7 @@
 <section class="min-h-[85vh] py-24 px-6 flex justify-center items-center bg-off-white">
     <div class="form-card-custom max-w-lg">
         <div class="text-center mb-10">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-primary-red mb-3">Welcome Back</h2>
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary-red mb-3">Welcome Back</h2>
             <p class="text-text-muted leading-relaxed">Ready to save more lives? Log in to your account.</p>
         </div>
 

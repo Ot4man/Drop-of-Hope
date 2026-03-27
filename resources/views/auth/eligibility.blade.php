@@ -6,7 +6,7 @@
 <section class="min-h-[90vh] py-20 px-6 flex justify-center items-center bg-off-white">
     <div class="form-card-custom max-w-xl">
         <div class="text-center mb-10">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-primary-red mb-3">Eligibility Check</h2>
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary-red mb-3">Eligibility Check</h2>
             <p class="text-text-muted text-sm md:text-base leading-relaxed">Ensure you are eligible to donate before registering.</p>
         </div>
 
