@@ -23,7 +23,7 @@ class User extends Authenticatable
         'dob',
         'zip_code',
         'password',
-        'donor_id',
+        'donor_id'
     ];
 
     protected $hidden = [
@@ -42,5 +42,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(ProfileUser::class);
     }
 }
