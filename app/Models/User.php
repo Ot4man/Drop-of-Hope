@@ -23,7 +23,8 @@ class User extends Authenticatable
         'dob',
         'zip_code',
         'password',
-        'donor_id'
+        'donor_id',
+        'role',
     ];
 
     protected $hidden = [
@@ -44,8 +45,29 @@ class User extends Authenticatable
         ];
     }
 
-    public function profile()
+    public function donorProfile()
     {
-        return $this->hasOne(ProfileUser::class);
+        return $this->hasOne(DonorProfile::class);
+    }
+
+    public function hospitalProfile()
+    {
+        return $this->hasOne(HospitalProfile::class);
+    }
+
+    // Role Helper Methods
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isHospital(): bool
+    {
+        return $this->role === 'hospital';
+    }
+
+    public function isDonor(): bool
+    {
+        return $this->role === 'donor';
     }
 }
