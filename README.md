@@ -1,58 +1,108 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🩸 Drop of Hope – Plateforme de gestion des dons de sang 🩸
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![Laravel Framework](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-## About Laravel
+> **"Chaque goutte compte, chaque donneur est un héros."**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📜 Présentation du Projet
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Drop of Hope** (initialement BloodConnect) est une plateforme web moderne conçue pour centraliser et structurer la gestion des dons de sang. Face aux difficultés de coordination entre les donneurs et les établissements de santé (hôpitaux et banques de sang), cette application vise à réduire les délais critiques en situation d'urgence en facilitant la mise en relation rapide entre les acteurs du don.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🚀 Fonctionnalités Clés
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 👤 Pour les Donneurs
+- **Gestion du Profil** : Création de compte et mise à jour des informations personnelles (groupe sanguin, localisation, etc.).
+- **Alertes de Don** : Réception de notifications en temps réel pour les demandes de don compatibles.
+- **Historique Personnel** : Suivi détaillé de toutes les contributions passées.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🏥 Pour les Hôpitaux & Banques de Sang
+- **Demandes Urgentes** : Création simplifiée de demandes de sang avec choix de la priorité.
+- **Suivi des Réponses** : Visualisation en temps réel des donneurs ayant répondu favorablement à une demande.
+- **Gestion des Stocks** : Meilleure visibilité sur la disponibilité locale des ressources.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### 🛡️ Pour les Administrateurs
+- **Supervision Globale** : Gestion complète des comptes utilisateurs (Donneurs et Hôpitaux).
+- **Tableau de Bord** : Vue d'ensemble de l'activité de la plateforme via des statistiques clés.
+- **Maintenance** : Modération et assurance du bon fonctionnement technique.
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## 🛠️ Stack Technique
 
-```bash
-composer require laravel/boost --dev
+- **Framework** : [Laravel 11.x](https://laravel.com)
+- **Langage** : PHP 8.2+
+- **Base de Données** : MySQL / PostgreSQL
+- **Frontend** : Blade Templates & Vanilla CSS (ou Tailwind CSS)
+- **Authentification** : Système d'authentification personnalisé (Custom Auth) sans solutions "clés en main".
 
-php artisan boost:install
-```
+---
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## 🏗️ Architecture & Conception
 
-## Contributing
+Le projet suit des standards de développement rigoureux :
+- **Design Pattern** : Utilisation de patrons de conception (ex: Repository ou Service Pattern) pour un code maintenable.
+- **Sécurité** : Gestion personnalisée des rôles (Admin, Hôpital, Donneur).
+- **Validation** : Rigueur dans la validation des données entrantes.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## ⚙️ Installation
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Pour installer le projet localement, suivez ces étapes :
 
-## Security Vulnerabilities
+1.  **Cloner le dépôt** :
+    ```bash
+    git clone https://github.com/[username]/drop-of-hope.git
+    cd drop-of-hope
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2.  **Installer les dépendances PHP** :
+    ```bash
+    composer install
+    ```
 
-## License
+3.  **Configurer l'environnement** :
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4.  **Configurer la base de données** (éditez votre fichier `.env`) :
+    ```env
+    DB_DATABASE=drop_of_hope
+    DB_USERNAME=votre_utilisateur
+    DB_PASSWORD=votre_mot_de_passe
+    ```
+
+5.  **Exécuter les migrations** :
+    ```bash
+    php artisan migrate
+    ```
+
+6.  **Lancer le serveur de développement** :
+    ```bash
+    php artisan serve
+    ```
+
+---
+
+## 📊 Roadmap du Projet
+
+- [ ] **Phase 1** : Mise en place de l'authentification personnalisée et des rôles.
+- [ ] **Phase 2** : Module de création de demandes de sang (Hôpitaux).
+- [ ] **Phase 3** : Dashboard donneur et historique de dons.
+- [ ] **Phase 4** : Statistiques et rapports administrateur.
+- [ ] **Phase 5** : Système de priorisation des demandes urgentes.
+
+---
+
+## 📄 Licence
+
+Ce projet est sous licence **MIT**. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+---
+
+*Développé avec ❤️ pour sauver des vies.*
