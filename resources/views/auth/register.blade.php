@@ -10,7 +10,7 @@
             <p class="text-text-muted leading-relaxed">Become a part of our life-saving community today.</p>
         </div>
 
-        <form id="register-form" method="POST" action="{{ route('register.post') }}" class="space-y-6">
+        <form id="register-form" method="POST" action="{{ route('register.donor.post') }}" class="space-y-6">
             @csrf
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="space-y-2">

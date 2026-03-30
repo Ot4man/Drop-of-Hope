@@ -30,6 +30,7 @@ class RegisterRequest extends FormRequest
             'date_of_birth' => 'required|date',
             'zip_code' => 'required|string|max:10',
             'donor_id' => 'nullable|string|max:255',
+            'role' => 'in:donor,hospital'
         ];
     }
 }
