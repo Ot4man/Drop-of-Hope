@@ -16,8 +16,13 @@ class EnsureProfileIsComplete
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::user()->profile || !Auth::user()->profile->available || !Auth::user()->profile->blood_type) {
-            return redirect()->route('profile.edit')->with('warning', 'Complete your profile first!');
+        $user = Auth::user();
+
+        // Only enforce donor profile completion for registered Donors
+        if ($user && $user->isDonor()) {
+            if (!$user->profile || !$user->profile->available || !$user->profile->blood_type) {
+                return redirect()->route('profile.edit')->with('warning', 'Complete your profile first');
+            }
         }
 
         return $next($request);
