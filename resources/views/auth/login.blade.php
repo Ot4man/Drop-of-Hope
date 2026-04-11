@@ -12,6 +12,12 @@
 
         <form method="POST" action="{{ route('login.post') }}" class="space-y-6">
             @csrf
+            
+            @if($errors->has('login'))
+                <div class="bg-red-50 text-primary-red p-4 rounded-xl text-sm font-medium border border-red-100 animate-shake">
+                    {{ $errors->first('login') }}
+                </div>
+            @endif
             <div class="space-y-2">
                 <label for="email" class="block font-semibold text-text-dark text-sm">Email or Username</label>
                 <input type="text" id="email" name="login" placeholder="Email or Username" required

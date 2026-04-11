@@ -15,10 +15,16 @@
         </a>
         <div class="hidden md:flex items-center gap-8 font-medium">
             <a href="{{ route('welcome') }}" class="hover:text-primary-red transition-colors">Home</a>
-            <a href="{{ route('eligibility') }}" class="hover:text-primary-red transition-colors">Donate</a>
             
             @auth
-                <a href="{{ route('dashboard') }}" class="hover:text-primary-red transition-colors font-medium">Dashboard</a>
+                @if(auth()->user()->role === 'hospital')
+                    <a href="{{ route('dashboard') }}" class="hover:text-primary-red transition-colors">Request Blood</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-primary-red transition-colors font-medium">Dashboard</a>
+                @else
+                    <a href="{{ route('eligibility') }}" class="hover:text-primary-red transition-colors">Donate</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-primary-red transition-colors font-medium">Dashboard</a>
+                @endif
+
                 <a href="{{ route('profile.edit') }}" class="flex items-center justify-center w-10 h-10 bg-red-50 text-primary-red rounded-full hover:bg-primary-red hover:text-white transition-all shadow-sm border border-red-100" title="My Profile">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                 </a>
@@ -27,8 +33,9 @@
                     <button type="submit" class="btn-primary-custom cursor-pointer py-2 px-5 text-sm">Logout</button>
                 </form>
             @else
+                <a href="{{ route('eligibility') }}" class="hover:text-primary-red transition-colors">Donate</a>
                 <a href="{{ route('login') }}" class="text-primary-red hover:underline decoration-2 underline-offset-4">Login</a>
-                <a href="{{ route('eligibility') }}" class="btn-primary-custom">Register</a>
+                <a href="{{ route('register') }}" class="btn-primary-custom">Register</a>
             @endauth
         </div>
         <!-- Mobile Menu Toggle (Simplified) -->

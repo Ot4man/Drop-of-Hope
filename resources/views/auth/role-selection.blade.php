@@ -12,7 +12,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Donor Card -->
-            <a href="{{ route('register.donor') }}" class="group block bg-white rounded-3xl p-10 border-2 border-transparent hover:border-primary-red shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <a href="{{ route('eligibility') }}" class="group block bg-white rounded-3xl p-10 border-2 border-transparent hover:border-primary-red shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                 <div class="flex justify-center mb-6">
                     <div class="h-24 w-24 bg-red-50 rounded-full flex items-center justify-center group-hover:bg-primary-red transition-colors duration-300">
                         <svg class="w-12 h-12 text-primary-red group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

@@ -11,7 +11,6 @@ class UpdateProfileRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        // Only return true if the user is logged in (handled by middleware but safe to keep)
         return true;
     }
 
@@ -22,10 +21,20 @@ class UpdateProfileRequest extends FormRequest
      */
     public function rules(): array
     {
+        $user = $this->user();
+
+        if ($user && $user->role === 'hospital') {
+            return [
+                'contact_phone' => 'required|string|max:20',
+                'city' => 'required|string|max:255',
+                'address' => 'required|string|max:255',
+            ];
+        }
+
         return [
             'blood_type' => 'required|string|in:A+,A-,B+,B-,O+,O-,AB+,AB-',
-            'phone' => 'required|string|max:15',
-            'city' => 'nullable|string|max:255',
+            'phone' => 'required|string|max:20',
+            'city' => 'required|string|max:255',
             'available' => 'nullable|boolean',
             'last_donation_date' => 'nullable|date|before_or_equal:today',
         ];

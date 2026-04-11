@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (isEligible) {
                 // Success! Redirect to register
-                window.location.href = "/register";
+                window.location.href = "/register/donor";
             } else {
                 alert("Eligibility Status:\n\n" + errors.join("\n"));
             }
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // REGISTRATION FORM VALIDATION 
+    // REGISTRATION FORM VALIDATION
     const registerForm = document.getElementById('register-form');
     if (registerForm) {
         registerForm.addEventListener('submit', (e) => {

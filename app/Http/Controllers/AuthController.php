@@ -41,10 +41,16 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+
         Auth::login($user);
 
-        // Redirect donor directly to eligibility check after basic info input!
-        return redirect()->route('eligibility')->with('success', 'Registration successful! Let\'s check your eligibility.');
+        return redirect()->route('dashboard')->with('success', 'Registration successful! Welcome to Drop of Hope.');
+    }
+
+    public function checkEligibility(Request $request)
+    {
+
+        return redirect()->route('register.donor');
     }
 
     public function showHospitalRegister()
@@ -60,8 +66,8 @@ class AuthController extends Controller
             'last_name' => 'Admin',
             'email' => $request->email,
             'username' => $request->username,
-            'dob' => now()->subYears(20), // dummy for schema compliance
-            'zip_code' => 'HOSPITAL', // dummy for schema compliance
+            'dob' => now()->subYears(20), 
+            'zip_code' => 'HOSPITAL',
             'role' => 'hospital',
             'password' => Hash::make($request->password),
         ]);
@@ -78,7 +84,6 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        // This will naturally be caught by the middleware and shown pending-verification!
         return redirect()->route('dashboard');
     }
 
@@ -89,7 +94,7 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        // Attempt to login using either email or username
+
         $fieldType = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
         if (Auth::attempt([$fieldType => $request->login, 'password' => $request->password], $request->filled('remember'))) {

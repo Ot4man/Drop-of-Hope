@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RedirectController;
+use App\Http\Middleware\EnsureProfileIsComplete;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,31 +26,26 @@ Route::middleware('guest')->group(function () {
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-use App\Http\Middleware\EnsureProfileIsComplete;
-
-Route::get('/dashboard', function() {
-    return view('dashboard');
-})->middleware(['auth', EnsureProfileIsComplete::class])->name('dashboard');
 
 
+
+Route::get('/register/eligibility', [AuthController::class, 'showEligibility'])->name('eligibility');
+Route::post('/register/eligibility', [AuthController::class, 'checkEligibility'])->name('eligibility.check');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/register/eligibility', [AuthController::class, 'showEligibility'])->name('eligibility');
-    Route::post('/register/eligibility', [AuthController::class, 'checkEligibility'])->name('eligibility.check');
-
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
 Route::get('/dashboard', [RedirectController::class, 'index'])
-    ->middleware('auth')
+    ->middleware(['auth', EnsureProfileIsComplete::class])
     ->name('dashboard');
 
 // DONOR ROUTES 
 
 Route::middleware(['auth', \App\Http\Middleware\CheckDonorEligibility::class])->group(function () {
     Route::get('/donor/dashboard', function () {
-        return "Welcome eligible donor You can now view and accept blood requests.";
+        return view('donor.dashboard');
     })->name('donor.dashboard');
     
 });
@@ -64,7 +60,7 @@ Route::get('/donor/not-eligible', function () {
 
 Route::middleware(['auth', \App\Http\Middleware\CheckHospitalVerification::class])->group(function () {
     Route::get('/hospital/dashboard', function () {
-        return "Welcome verified hospital You can now create urgent blood requests.";
+        return view('hospital.dashboard');
     })->name('hospital.dashboard');
     
 });

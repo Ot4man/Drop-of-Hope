@@ -68,7 +68,7 @@
     <div class="max-w-3xl mx-auto z-10 relative">
         <h2 class="text-4xl font-serif mb-6 text-text-dark tracking-tight">Ready to save a life today?</h2>
         <p class="text-lg text-text-muted mb-10 leading-relaxed">Each donation can save up to three lives. It’s simple, safe, and only takes about 45 minutes of your time.</p>
-        <a href="{{ route('eligibility') }}" class="btn-primary-custom px-12 py-5 text-xl font-bold">Register as a Donor</a>
+        <a href="{{ route('register') }}" class="btn-primary-custom px-12 py-5 text-xl font-bold">Register as a Donor</a>
     </div>
 </section>
 @endsection

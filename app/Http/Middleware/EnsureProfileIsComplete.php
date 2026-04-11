@@ -20,7 +20,7 @@ class EnsureProfileIsComplete
 
         // Only enforce donor profile completion for registered Donors
         if ($user && $user->isDonor()) {
-            if (!$user->profile || !$user->profile->available || !$user->profile->blood_type) {
+            if (!$user->donorProfile || !$user->donorProfile->available || !$user->donorProfile->blood_type) {
                 return redirect()->route('profile.edit')->with('warning', 'Complete your profile first');
             }
         }
