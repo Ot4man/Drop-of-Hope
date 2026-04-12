@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Middleware\EnsureProfileIsComplete;
+use App\Http\Middleware\CheckHospitalVerification;
+use App\Http\Middleware\CheckDonorEligibility;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -43,7 +45,7 @@ Route::get('/dashboard', [RedirectController::class, 'index'])
 
 // DONOR ROUTES 
 
-Route::middleware(['auth', \App\Http\Middleware\CheckDonorEligibility::class])->group(function () {
+Route::middleware(['auth', CheckDonorEligibility::class])->group(function () {
     Route::get('/donor/dashboard', function () {
         return view('donor.dashboard');
     })->name('donor.dashboard');
@@ -58,7 +60,7 @@ Route::get('/donor/not-eligible', function () {
 
 // HOSPITAL ROUTES 
 
-Route::middleware(['auth', \App\Http\Middleware\CheckHospitalVerification::class])->group(function () {
+Route::middleware(['auth', CheckHospitalVerification::class])->group(function () {
     Route::get('/hospital/dashboard', function () {
         return view('hospital.dashboard');
     })->name('hospital.dashboard');
