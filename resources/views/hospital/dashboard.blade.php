@@ -57,13 +57,13 @@
         </div>
         
         <div class="flex flex-wrap gap-4 pt-10 border-t border-gray-50">
-            <a href="#" class="btn-primary-custom px-8 py-4 text-base font-bold flex items-center gap-2 hover:scale-105 transition-transform">
+            <a href="{{ route('hospital.requests.create') }}" class="btn-primary-custom px-8 py-4 text-base font-bold flex items-center gap-2 hover:scale-105 transition-transform">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                 Create Urgent Request
             </a>
-            <a href="#" class="px-8 py-4 border-2 border-gray-200 text-gray-700 bg-white rounded-xl font-bold hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center gap-2">
+            <a href="{{ route('hospital.requests.index') }}" class="px-8 py-4 border-2 border-gray-200 text-gray-700 bg-white rounded-xl font-bold hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center gap-2">
                 <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                View Inventory
+                Manage Requests
             </a>
             
             <form action="{{ route('logout') }}" method="POST" class="ml-auto">
