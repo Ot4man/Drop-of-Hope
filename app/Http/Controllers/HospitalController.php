@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\BloodRequest;
 use App\Models\Response as BloodResponse;
+use App\Models\User;
 use App\Http\Requests\StoreBloodRequestRequest;
+use App\Notifications\UrgentBloodRequestNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class HospitalController extends Controller
 {
@@ -30,8 +33,7 @@ class HospitalController extends Controller
    
     public function store(StoreBloodRequestRequest $request)
     {
-        
-        BloodRequest::create([
+        $bloodRequest = BloodRequest::create([
             'hospital_id' => Auth::id(),
             'blood_type'  => $request->blood_type,
             'quantity'    => $request->quantity,
@@ -39,6 +41,16 @@ class HospitalController extends Controller
             'location'    => $request->location,
             'status'      => 'open',
         ]);
+
+        if (in_array($request->urgency, ['high', 'critical'])) {
+            $donorsToNotify = User::where('role', 'donor')
+                ->whereHas('donorProfile', function ($query) use ($request) {
+                    $query->where('blood_type', $request->blood_type);
+                })
+                ->get();
+
+            Notification::send($donorsToNotify, new UrgentBloodRequestNotification($bloodRequest));
+        }
 
         return redirect()->route('hospital.requests.index')
             ->with('success', 'Blood request created successfully.');

@@ -1,9 +1,9 @@
 <?php
-
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\HospitalController;
+use App\Http\Controllers\DonorController;
 use App\Http\Middleware\EnsureProfileIsComplete;
 use App\Http\Middleware\CheckHospitalVerification;
 use App\Http\Middleware\CheckDonorEligibility;
@@ -47,10 +47,10 @@ Route::get('/dashboard', [RedirectController::class, 'index'])
 // DONOR ROUTES 
 
 Route::middleware(['auth', CheckDonorEligibility::class])->group(function () {
-    Route::get('/donor/dashboard', function () {
-        return view('donor.dashboard');
-    })->name('donor.dashboard');
-
+    Route::get('/donor/dashboard', [DonorController::class, 'dashboard'])->name('donor.dashboard');
+    Route::get('/donor/requests/{id}', [DonorController::class, 'showRequest'])->name('donor.requests.show');
+    Route::post('/donor/requests/{id}/respond', [DonorController::class, 'respond'])->name('donor.requests.respond');
+    Route::post('/donor/notifications/{id}/read', [DonorController::class, 'markNotificationRead'])->name('donor.notifications.read');
 });
 
 Route::get('/donor/not-eligible', function () {

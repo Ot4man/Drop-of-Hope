@@ -36,9 +36,6 @@ class DonorProfile extends Model
         return 0;
     }
 
-    /**
-     * Re-evaluate donor eligibility dynamically based on specific conditions.
-     */
     public function evaluateEligibility()
     {
         $age = $this->age;
@@ -47,7 +44,6 @@ class DonorProfile extends Model
         $hasValidBloodType = in_array($this->blood_type, ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
         $isAvailable = $this->available;
         
-        // Wait at least 3 months since last donation
         $isDonationDelayRespected = true;
         if ($this->last_donation_date) {
             $isDonationDelayRespected = $this->last_donation_date->diffInMonths(Carbon::now()) >= 3;
