@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\HospitalController;
 use App\Http\Middleware\EnsureProfileIsComplete;
 use App\Http\Middleware\CheckHospitalVerification;
 use App\Http\Middleware\CheckDonorEligibility;
@@ -15,10 +16,10 @@ Route::get('/', function () {
 Route::middleware('guest')->group(function () {
 
     Route::get('/register', [AuthController::class, 'showRoleSelection'])->name('register');
-    
+
     Route::get('/register/donor', [AuthController::class, 'showDonorRegister'])->name('register.donor');
     Route::post('/register/donor', [AuthController::class, 'registerDonor'])->name('register.donor.post');
-    
+
     Route::get('/register/hospital', [AuthController::class, 'showHospitalRegister'])->name('register.hospital');
     Route::post('/register/hospital', [AuthController::class, 'registerHospital'])->name('register.hospital.post');
 
@@ -49,7 +50,7 @@ Route::middleware(['auth', CheckDonorEligibility::class])->group(function () {
     Route::get('/donor/dashboard', function () {
         return view('donor.dashboard');
     })->name('donor.dashboard');
-    
+
 });
 
 Route::get('/donor/not-eligible', function () {
@@ -64,7 +65,20 @@ Route::middleware(['auth', CheckHospitalVerification::class])->group(function ()
     Route::get('/hospital/dashboard', function () {
         return view('hospital.dashboard');
     })->name('hospital.dashboard');
-    
+
+    // Blood Request Management
+    Route::prefix('hospital/requests')->name('hospital.requests.')->group(function () {
+        Route::get('/', [HospitalController::class, 'index'])->name('index');
+        Route::get('/create', [HospitalController::class, 'create'])->name('create');
+        Route::post('/', [HospitalController::class, 'store'])->name('store');
+        Route::get('/{id}', [HospitalController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [HospitalController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [HospitalController::class, 'update'])->name('update');
+        Route::delete('/{id}', [HospitalController::class, 'destroy'])->name('destroy');
+
+        // Responses to requests
+        Route::get('/{requestId}/responses', [HospitalController::class, 'responses'])->name('responses');
+    });
 });
 
 Route::get('/hospital/pending-verification', function () {

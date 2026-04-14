@@ -64,7 +64,6 @@ class ProfileController extends Controller
             ]);
         }
 
-        // Trigger dynamic eligibility recalculation
         $profile->evaluateEligibility();
 
         return redirect()->back()->with('success', 'Profile updated successfully');

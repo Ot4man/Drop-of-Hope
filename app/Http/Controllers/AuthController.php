@@ -38,7 +38,7 @@ class AuthController extends Controller
             'zip_code' => $request->zip_code,
             'donor_id' => $request->donor_id,
             'role' => 'donor',
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
         ]);
 
 
@@ -60,7 +60,6 @@ class AuthController extends Controller
 
     public function registerHospital(HospitalRegisterRequest $request)
     {
-        // Creating parent User wrapper for hospital admin
         $user = User::create([
             'first_name' => 'Hospital',
             'last_name' => 'Admin',
@@ -69,7 +68,7 @@ class AuthController extends Controller
             'dob' => now()->subYears(20), 
             'zip_code' => 'HOSPITAL',
             'role' => 'hospital',
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
         ]);
 
         // Creating the specific hospital profile securely
