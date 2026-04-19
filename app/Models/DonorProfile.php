@@ -2,25 +2,27 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 
 class DonorProfile extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'user_id',
         'blood_type',
-        'phone',
         'city',
-        'available',
+        'phone',
         'last_donation_date',
         'is_eligible',
+        'available',
     ];
 
     protected $casts = [
-        'available' => 'boolean',
-        'is_eligible' => 'boolean',
         'last_donation_date' => 'date',
+        'is_eligible' => 'boolean',
+        'available' => 'boolean',
     ];
 
     public function user()
@@ -28,33 +30,21 @@ class DonorProfile extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getAgeAttribute()
+    public function responses()
     {
-        if ($this->user && $this->user->dob) {
-            return Carbon::parse($this->user->dob)->age;
-        }
-        return 0;
+        return $this->hasMany(Response::class);
     }
 
+    /**
+     * Check if the donor is eligible to donate based on last donation date.
+     * Blood donation rule: 56 days between donations.
+     */
     public function evaluateEligibility()
     {
-        $age = $this->age;
-        $isAgeValid = ($age >= 18 && $age <= 65);
-        
-        $hasValidBloodType = in_array($this->blood_type, ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
-        $isAvailable = $this->available;
-        
-        $isDonationDelayRespected = true;
-        if ($this->last_donation_date) {
-            $isDonationDelayRespected = $this->last_donation_date->diffInMonths(Carbon::now()) >= 3;
+        if (!$this->last_donation_date) {
+            return true;
         }
 
-        $eligible = ($isAgeValid && $hasValidBloodType && $isAvailable && $isDonationDelayRespected);
-
-        if ($this->is_eligible !== $eligible) {
-            $this->update(['is_eligible' => $eligible]);
-        }
-
-        return $eligible;
+        return $this->last_donation_date->diffInDays(now()) >= 56;
     }
 }

@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class HospitalProfile extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'user_id',
         'hospital_name',
@@ -23,5 +26,10 @@ class HospitalProfile extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function bloodRequests()
+    {
+        return $this->hasMany(BloodRequest::class, 'hospital_id');
     }
 }
