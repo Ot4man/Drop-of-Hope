@@ -35,12 +35,15 @@ class AuthController extends Controller
             'email' => $request->email,
             'username' => $request->username,
             'dob' => $request->date_of_birth,
-            'zip_code' => $request->zip_code,
-            'donor_id' => $request->donor_id,
             'role' => 'donor',
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
         ]);
-
+        $user->donorProfile()->create([
+            'blood_type' => $request->blood_type ?? 'Unknown',
+            'phone' => $request->phone ?? '',
+            'city' => $request->city ?? 'Unknown',
+            'available' => true,
+        ]);
 
         Auth::login($user);
 
@@ -49,7 +52,6 @@ class AuthController extends Controller
 
     public function checkEligibility(Request $request)
     {
-
         return redirect()->route('register.donor');
     }
 
@@ -65,20 +67,18 @@ class AuthController extends Controller
             'last_name' => 'Admin',
             'email' => $request->email,
             'username' => $request->username,
-            'dob' => now()->subYears(20), 
-            'zip_code' => 'HOSPITAL',
+            'dob' => now()->subYears(20),
             'role' => 'hospital',
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
         ]);
 
-        // Creating the specific hospital profile securely
         $user->hospitalProfile()->create([
             'hospital_name' => $request->hospital_name,
             'license_number' => $request->license_number,
             'contact_phone' => $request->contact_phone,
             'city' => $request->city,
             'address' => $request->address,
-            'is_verified' => true,
+            'is_verified' => false, 
         ]);
 
         Auth::login($user);
