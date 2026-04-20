@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('responses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('blood_request_id')->constrained()->onDelete('cascade');
-            $table->foreignId('donor_id')->constrained('users')->onDelete('cascade');
-            $table->string('status')->default('pending'); 
+            $table->foreignId('blood_request_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('donor_id')->constrained('donor_profiles')->cascadeOnDelete();
+            $table->enum('status', ['pending', 'accepted', 'rejected', 'cancelled']);
             $table->timestamps();
+            
+            $table->unique(['blood_request_id', 'donor_id']);
         });
     }
 

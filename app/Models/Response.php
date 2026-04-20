@@ -15,15 +15,18 @@ class Response extends Model
         'status',
     ];
 
-   
     public function bloodRequest()
     {
         return $this->belongsTo(BloodRequest::class);
     }
 
-    
-    public function donor()
+    public function donorProfile()
     {
-        return $this->belongsTo(User::class, 'donor_id');
+        return $this->belongsTo(DonorProfile::class, 'donor_id');
+    }
+
+    public function appointment()
+    {
+        return $this->hasOne(Appointment::class);
     }
 }

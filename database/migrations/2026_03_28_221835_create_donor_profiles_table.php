@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('donor_profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();
             $table->string('blood_type');
             $table->string('phone');
             $table->string('city');
-            $table->boolean('available')->default(true);
+            $table->boolean('available');
             $table->date('last_donation_date')->nullable();
-            $table->boolean('is_eligible')->default(false);
             $table->timestamps();
         });
     }

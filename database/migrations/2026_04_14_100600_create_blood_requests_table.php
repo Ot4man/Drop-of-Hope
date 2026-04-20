@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('blood_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('hospital_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('hospital_id')->constrained('hospital_profiles')->cascadeOnDelete();
             $table->string('blood_type');
             $table->integer('quantity');
-            $table->string('urgency'); 
-            $table->string('location');
-            $table->string('status')->default('open'); 
+            $table->enum('urgency', ['low', 'medium', 'high', 'critical']);
+            $table->enum('status', ['open', 'closed', 'fulfilled', 'cancelled']);
             $table->timestamps();
         });
     }

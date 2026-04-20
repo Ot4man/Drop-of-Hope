@@ -14,15 +14,13 @@ class BloodRequest extends Model
         'blood_type',
         'quantity',
         'urgency',
-        'location',
         'status',
     ];
 
-    public function hospital()
+    public function hospitalProfile()
     {
-        return $this->belongsTo(User::class, 'hospital_id');
+        return $this->belongsTo(HospitalProfile::class, 'hospital_id');
     }
-
 
     public function responses()
     {

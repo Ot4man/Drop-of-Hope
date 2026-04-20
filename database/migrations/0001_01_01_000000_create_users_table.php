@@ -17,10 +17,9 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->date('dob');
-            $table->string('donor_id')->nullable();
-            $table->string('zip_code');
             $table->string('password');
+            $table->enum('role', ['donor', 'hospital', 'admin']);
+            $table->date('dob');
             $table->timestamps();
         });
 

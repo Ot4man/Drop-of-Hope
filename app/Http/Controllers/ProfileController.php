@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    /**
-     * Show the profile edit form.
-     */
+    
     public function edit()
     {
         $user = Auth::user();
@@ -23,12 +21,9 @@ class ProfileController extends Controller
         return view('profile.edit', compact('user'));
     }
 
-    /**
-     * Update the user profile.
-     */
     public function update(UpdateProfileRequest $request)
     {
-        $user = Auth::user();
+        $user = request()->user();
 
         if ($user->role === 'hospital') {
             $user->hospitalProfile()->updateOrCreate(
@@ -43,7 +38,6 @@ class ProfileController extends Controller
             return redirect()->back()->with('success', 'Hospital profile updated successfully!');
         }
 
-        // Donor Logic
         $profile = $user->donorProfile;
 
         if (!$profile) {

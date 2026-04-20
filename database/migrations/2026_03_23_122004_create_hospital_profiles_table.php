@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('hospital_profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();
             $table->string('hospital_name');
             $table->string('license_number')->unique();
             $table->string('contact_phone');
             $table->string('address');
             $table->string('city');
-            $table->boolean('is_verified')->default(false);
+            $table->boolean('is_verified');
             $table->timestamps();
         });
     }
