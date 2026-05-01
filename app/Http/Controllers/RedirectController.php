@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 class RedirectController extends Controller
 {
-    //
     public function index()
     {
         $user = auth()->user();
@@ -19,6 +18,6 @@ class RedirectController extends Controller
             return redirect()->route('hospital.dashboard');
         }
 
-        return redirect('/'); // fallback
+        return redirect('/'); 
     }
 }
