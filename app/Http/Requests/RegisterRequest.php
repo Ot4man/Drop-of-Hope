@@ -14,11 +14,7 @@ class RegisterRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
+    
     public function rules(): array
     {
         return [
@@ -28,9 +24,9 @@ class RegisterRequest extends FormRequest
             'username' => 'required|string|unique:users,username',
             'password' => 'required|string|min:8|confirmed',
             'date_of_birth' => 'required|date',
-            'zip_code' => 'required|string|max:10',
-            'donor_id' => 'nullable|string|max:255',
-            'role' => 'in:donor,hospital'
+            'city' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'blood_type' => 'required|string|max:5',
         ];
     }
 }
