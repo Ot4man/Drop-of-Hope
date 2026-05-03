@@ -38,8 +38,31 @@
                            class="w-full px-4 py-3 rounded-xl border border-gray-100 bg-gray-50 outline-none focus:bg-white focus:border-primary-red transition-all duration-300">
                 </div>
                 <div class="space-y-2">
-                    <label for="zip" class="block font-semibold text-text-dark text-sm">ZIP Code</label>
-                    <input type="text" id="zip" name="zip_code" placeholder="12345" required
+                    <label for="blood_type" class="block font-semibold text-text-dark text-sm">Blood Type</label>
+                    <select id="blood_type" name="blood_type" required
+                            class="w-full px-4 py-3 rounded-xl border border-gray-100 bg-gray-50 outline-none focus:bg-white focus:border-primary-red transition-all duration-300">
+                        <option value="">Select Blood Type</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-2">
+                    <label for="city" class="block font-semibold text-text-dark text-sm">City</label>
+                    <input type="text" id="city" name="city" placeholder="Casablanca" required
+                           class="w-full px-4 py-3 rounded-xl border border-gray-100 bg-gray-50 outline-none focus:bg-white focus:border-primary-red transition-all duration-300">
+                </div>
+                <div class="space-y-2">
+                    <label for="phone" class="block font-semibold text-text-dark text-sm">Phone Number</label>
+                    <input type="text" id="phone" name="phone" placeholder="0612345678" required
                            class="w-full px-4 py-3 rounded-xl border border-gray-100 bg-gray-50 outline-none focus:bg-white focus:border-primary-red transition-all duration-300">
                 </div>
             </div>
@@ -55,19 +78,12 @@
                     <label for="password" class="block font-semibold text-text-dark text-sm">Password</label>
                     <input type="password" id="password" name="password" placeholder="Min. 8 characters" required
                            class="w-full px-4 py-3 rounded-xl border border-gray-100 bg-gray-50 outline-none focus:bg-white focus:border-primary-red transition-all duration-300">
-                    <div id="strength-bar" class="password-strength-bar"></div>
                 </div>
                 <div class="space-y-2">
                     <label for="repeat-password" class="block font-semibold text-text-dark text-sm">Confirm Password</label>
                     <input type="password" id="repeat-password" name="password_confirmation" placeholder="Confirm your password" required
                            class="w-full px-4 py-3 rounded-xl border border-gray-100 bg-gray-50 outline-none focus:bg-white focus:border-primary-red transition-all duration-300">
                 </div>
-            </div>
-
-            <div class="space-y-2">
-                <label for="donor_id" class="block font-semibold text-text-dark text-sm">Donor ID (Optional)</label>
-                <input type="text" id="donor_id" name="donor_id" placeholder="Existing ID"
-                       class="w-full px-4 py-3 rounded-xl border border-gray-100 bg-gray-50 outline-none focus:bg-white focus:border-primary-red transition-all duration-300">
             </div>
 
             <button type="submit" class="w-full btn-primary-custom py-4 text-xl font-bold mt-4 shadow-xl">Join the Movement</button>

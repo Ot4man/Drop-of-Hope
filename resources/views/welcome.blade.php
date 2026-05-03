@@ -60,7 +60,53 @@
     </div>
 </section>
 
-<!-- CTA Section -->
+<!-- Compatibility Matrix Section -->
+<section class="py-20 px-[5%] bg-white font-sans">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl text-[#E31837] mb-4 font-normal">Patients your blood type can help</h2>
+        <p class="text-gray-500 text-sm font-normal">Donor's blood type</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto overflow-x-auto">
+        <table class="w-full border-t border-gray-200">
+            <thead>
+                <tr>
+                    <th class="p-4 w-32 border-r border-gray-100"></th>
+                    @foreach(['O-', 'O+', 'B-', 'B+', 'A-', 'A+', 'AB-', 'AB+'] as $type)
+                        <th class="p-4 text-gray-400 font-normal text-sm">{{ $type }}</th>
+                    @endforeach
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    $compatibility = [
+                        'AB+' => ['O-', 'O+', 'B-', 'B+', 'A-', 'A+', 'AB-', 'AB+'],
+                        'AB-' => ['O-', 'B-', 'A-', 'AB-'],
+                        'A+'  => ['O-', 'O+', 'A-', 'A+'],
+                        'A-'  => ['O-', 'A-'],
+                        'B+'  => ['O-', 'O+', 'B-', 'B+'],
+                        'B-'  => ['O-', 'B-'],
+                        'O+'  => ['O-', 'O+'],
+                        'O-'  => ['O-'],
+                    ];
+                @endphp
+
+                @foreach(['AB+', 'AB-', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-'] as $row)
+                <tr class="{{ $loop->even ? 'bg-[#F9F9F9]' : '' }} border-t border-gray-100">
+                    <td class="p-4 text-center text-gray-500 font-normal text-sm border-r border-gray-100">{{ $row }}</td>
+                    @foreach(['O-', 'O+', 'B-', 'B+', 'A-', 'A+', 'AB-', 'AB+'] as $col)
+                    <td class="p-4 text-center">
+                        @if(in_array($col, $compatibility[$row]))
+                            <div class="w-4 h-4 bg-[#E31837] rounded-full mx-auto"></div>
+                        @endif
+                    </td>
+                    @endforeach
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</section>
 <section class="py-24 px-[10%] text-center relative overflow-hidden">
     <div class="absolute -top-24 -left-24 w-64 h-64 bg-red-50 rounded-full mix-blend-multiply opacity-50 blur-3xl"></div>
     <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-red-100 rounded-full mix-blend-multiply opacity-50 blur-3xl"></div>
