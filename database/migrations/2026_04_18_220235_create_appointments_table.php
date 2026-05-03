@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('donor_profiles', function (Blueprint $table) {
+        Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();
-            $table->string('blood_type');
-            $table->string('phone');
-            $table->string('city');
-            $table->boolean('available');
-            $table->date('last_donation_date')->nullable();
+            $table->foreignId('response_id')->unique()->constrained()->cascadeOnDelete();
+            $table->timestamp('scheduled_at');
+            $table->enum('status', ['scheduled', 'completed', 'cancelled', 'no_show']);
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('donor_profiles');
+        Schema::dropIfExists('appointments');
     }
 };
